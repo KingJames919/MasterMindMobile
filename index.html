@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MasterMind</title>
+    <meta
+      name="description"
+      content="A polished browser-based codebreaking game inspired by Mastermind."
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="ambient ambient--left" aria-hidden="true"></div>
+      <div class="ambient ambient--right" aria-hidden="true"></div>
+
+      <main class="layout">
+        <header class="title-bar">
+          <div class="title-lockup">
+            <p class="eyebrow">MasterMind</p>
+            <h1>MasterMind</h1>
+          </div>
+
+          <label class="player-entry" for="player-name-input">
+            <span>Player</span>
+            <input
+              id="player-name-input"
+              name="player-name"
+              type="text"
+              maxlength="18"
+              autocomplete="nickname"
+              placeholder="Enter name"
+            />
+          </label>
+
+          <button class="button button-primary" id="new-game-button" type="button">
+            New Game
+          </button>
+        </header>
+
+        <div class="dashboard-grid">
+          <section class="play-column">
+            <section class="panel panel-status" aria-labelledby="status-title">
+              <div class="status-topline compact-topline">
+                <span class="status-chip" id="status-chip">Active</span>
+                <span class="player-pill" id="player-pill">Player: Agent</span>
+              </div>
+              <h2 id="status-title">Live</h2>
+
+              <div class="status-metrics" aria-label="Latest feedback">
+                <div class="metric-card">
+                  <span class="metric-value" id="exact-count">0</span>
+                  <span class="metric-label">Exact</span>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-value" id="partial-count">0</span>
+                  <span class="metric-label">Partial</span>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-value" id="remaining-count">10</span>
+                  <span class="metric-label">Remaining</span>
+                </div>
+              </div>
+
+              <div class="reveal-panel hidden" id="reveal-panel" aria-live="polite">
+                <span class="reveal-label" id="reveal-label">Solved Code</span>
+                <div class="reveal-row" id="reveal-row"></div>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="entry-title">
+              <div class="panel-header">
+                <p class="eyebrow">Entry</p>
+                <h2 id="entry-title">Current Guess</h2>
+              </div>
+
+              <div
+                class="guess-row current-row"
+                id="current-guess-row"
+                role="group"
+                aria-label="Current guess"
+              ></div>
+
+              <div class="palette" id="palette" role="radiogroup" aria-label="Available colors"></div>
+
+              <div class="action-row">
+                <button class="button button-ghost" id="clear-row-button" type="button">
+                  Clear
+                </button>
+                <button class="button button-primary" id="submit-guess-button" type="button">
+                  Submit
+                </button>
+              </div>
+
+              <p class="panel-hint">1-6 select, arrows move, Enter place, S submit.</p>
+            </section>
+          </section>
+
+          <section class="history-column">
+            <section class="panel" aria-labelledby="history-title">
+              <div class="panel-header">
+                <p class="eyebrow">Log</p>
+                <h2 id="history-title">History</h2>
+              </div>
+              <div class="history-board" id="history-board" role="table" aria-label="Guess history"></div>
+            </section>
+          </section>
+
+          <aside class="leaderboard-column">
+            <section class="panel panel-compact" aria-labelledby="leaderboard-title">
+              <div class="panel-header">
+                <p class="eyebrow">Leaderboard</p>
+                <h2 id="leaderboard-title">Leaderboard</h2>
+              </div>
+              <div class="leaderboard-head leaderboard-row" aria-hidden="true">
+                <span>#</span>
+                <span>Name</span>
+                <span>W</span>
+                <span>G</span>
+                <span>Best</span>
+              </div>
+              <div class="leaderboard-list" id="leaderboard-list"></div>
+              <button class="button button-ghost" id="reset-leaderboard-button" type="button">
+                Reset Leaderboard
+              </button>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
